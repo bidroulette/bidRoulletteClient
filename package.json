@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1233.0",
+    "chance": "^1.1.9",
+    "sqs-consumer": "^5.7.0",
+    "sqs-producer": "^2.1.0"
+  },
+  "name": "bidroulletteclient",
+  "description": "Client for our bid roulette app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bidroulette/bidRoulletteClient.git"
+  },
+  "author": "Team Bid Roulette",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bidroulette/bidRoulletteClient/issues"
+  },
+  "homepage": "https://github.com/bidroulette/bidRoulletteClient#readme"
+}

@@ -9,6 +9,8 @@ import Header from './Header.js';
 // import Game from './Game.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import { signup, signin } from './Cognito.js'
+
 
 // import 'cross-fetch/polyfill';
 // import AmazonCognitoIdentity from 'amazon-cognito-identity-js';

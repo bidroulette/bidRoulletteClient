@@ -1,39 +1,70 @@
-import 'cross-fetch/polyfill';
-import  AmazonCognitoIdentity from 'amazon-cognito-identity-js';
+'use strict';
 
-var poolData = {
-	UserPoolId: 'us-west-2_U0gI7Lc6z', // Your user pool id here
-	ClientId: '6sgbtibpnbj713hm87rie729cm', // Your client id here
-};
-var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
-var attributeList = [];
+function signup(name, email, password) {
 
-var dataEmail = {
-	Name: 'email',
-	Value: 'email@mydomain.com',
-};
+  if (!name || !email || !password) {
+    throw new Error('Input Validation Error : name, email or password invalid');
+  }
+  const poolData = {
+    UserPoolId: process.env.AWS_COGNITO_USER_POOL_ID,
+    ClientId: process.env.AWS_COGNITO_CLIENT_ID,
+  }
 
-var dataPhoneNumber = {
-	Name: 'phone_number',
-	Value: '+15555555555',
-};
-var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
-var attributePhoneNumber = new AmazonCognitoIdentity.CognitoUserAttribute(
-	dataPhoneNumber
-);
+  const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+  const dataEmail = {
+    Name: 'email',
+    Value: email
+  }
+  const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+//
+  const dataName = {
+    Name: 'name',
+    Value: name
+  }
+  const attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(dataName);
+//
+  userPool.signUp(name, email, password, [attributeEmail, attributeName], null, (err, data) => {
+    if (err) {
+      console.error(err);
+    }
+    let user = data.user;
+    console.log('user signed up :', user);
+  })
+}
 
-attributeList.push(attributeEmail);
-attributeList.push(attributePhoneNumber);
+//// Sign in
+function signin(name, username, email, password) {
+  if (!name || !username || !email || !password) {
+    throw new Error('Input Validation Error: invalid cognito credentials');
+  }
+  const poolData = {
+    UserPoolId: process.env.AWS_COGNITO_USER_POOL_ID,
+    ClientId: process.env.AWS_COGNITO_CLIENT_ID,
+  }
+  let credentials = {
+    Name:name,
+    Email: email,
+    Password: password
+  } 
+  const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(credentials);
+  const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+  const userData = {
+    userName: username,
+    Pool: userPool
+  }
+  const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData)
+  cognitoUser.authenticateUser(authenticationDetails, {
+    onSuccess: function(result) {
+      let accessToken = result.getAccessToken().getJwtToken();
+      console.log('SUCCESS! ' + accessToken);
+    },
+    onFailure: function(err) {
+      console.error('authentication error: ', err);
+    }
+  })
+}
 
-userPool.signUp('username', 'password', attributeList, null, function(
-	err,
-	result
-) {
-	if (err) {
-		alert(err.message || JSON.stringify(err));
-		return;
-	}
-	var cognitoUser = result.user;
-	console.log('user name is ' + cognitoUser.getUsername());
-});
+
+module.exports = { signup, signin };

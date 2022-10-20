@@ -8,9 +8,9 @@ class LoginPage extends React.Component {
     render() {
       return (
         <>
-      <p>Hello</p>
-         <Button>Log In</Button>
-         <Button>Log Out</Button>
+      <h1>Welcome!</h1>
+         <p>You are logged in now!</p>
+         <a href="https://bid-roulette.auth.us-west-2.amazoncognito.com/logout?client_id=6sgbtibpnbj713hm87rie729cm&logout_uri=http://localhost:3000/LogoutPage.html">Log Out</a>
 
         </>
       )

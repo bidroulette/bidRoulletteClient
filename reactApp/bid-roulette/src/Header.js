@@ -22,7 +22,11 @@ class Header extends React.Component {
               </LinkContainer>
 
               <LinkContainer to="/LoginPage">
-                <Nav.Link href="/LoginPage">High Score</Nav.Link>
+                <Nav.Link href="/LoginPage">Loggedin</Nav.Link>
+              </LinkContainer>
+
+              <LinkContainer to="/LogoutPage">
+                <Nav.Link href="/LogoutPage">LoggedOut</Nav.Link>
               </LinkContainer>
 
               <LinkContainer to="/About">

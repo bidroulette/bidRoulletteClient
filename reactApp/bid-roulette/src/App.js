@@ -71,20 +71,20 @@ componentDidMount(){
 }  
 
  
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       showModal: false,
-//       showUpdateModal: false,
-//       showSongModal:false,
-//       highScore:[],
-//       score:{},
-//       favSongs:[],
-//       song:{},
-//   }
-// };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false,
+      showUpdateModal: false,
+      showSongModal:false,
+      highScore:[],
+      score:{},
+      favSongs:[],
+      song:{},
+  }
+};
 
-    
+   
 
   render() {
     return (
@@ -116,6 +116,8 @@ componentDidMount(){
           <Route 
             path="/LoginPage" 
             element={<LoginPage
+            onSubmit={this.onSubmit}
+            onChange={this.onChange}
             />}>
           </Route>
           <Route 

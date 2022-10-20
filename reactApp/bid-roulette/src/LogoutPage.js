@@ -9,7 +9,7 @@ class LogoutPage extends React.Component {
         <>
       <h1>Hello</h1>
          <p>You are logged out</p>
-         <a href="https://bid-roulette.auth.us-west-2.amazoncognito.com/login?client_id=6sgbtibpnbj713hm87rie729cm&response_type=code&scope=email+openid&redirect_uri=http://localhost:3000/LoginPage.html">Log In</a>
+         {/* <a href="https://bid-roulette.auth.us-west-2.amazoncognito.com/login?client_id=6sgbtibpnbj713hm87rie729cm&response_type=code&scope=email+openid&redirect_uri=http://localhost:3000/LoginPage.html">Log In</a> */}
 
         </>
       )

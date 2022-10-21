@@ -9,7 +9,7 @@ import Header from './Header.js';
 // import Game from './Game.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { signup, signin } from './Cognito.js'
+//import { signup, signin } from './Cognito.js'
 
 
 // import 'cross-fetch/polyfill';
@@ -49,12 +49,12 @@ import { signup, signin } from './Cognito.js'
 
 
 const URL = 'http://localhost:3002/messages';
-const socket = io.connect(URL)
-//   const socket = io.connect(URL, {
-//     auth: {
-//       token: 'TOKEN,
-//     }
-// });// unauthorized unless a token is attached;
+// const socket = io.connect(URL)
+  const socket = io.connect(URL, {
+    auth: {
+      token: 'eyJraWQiOiJJcEdHNVRjWnhyVHFFbkZkd3ZwXC9MYlR3ZXJJdGc5VUlaTEFhMVRRWXpHST0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI1MmUxODdkMy1hOGQyLTQxOGYtYThjNC00MDFiNTgxZWI0ZjIiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl84Y1NPVkxQc2YiLCJjbGllbnRfaWQiOiI2YmZjajhtdXRrcGhwMnYyNzFmdWwwYmdqcSIsIm9yaWdpbl9qdGkiOiI0MjM5NGJmOS00NDZiLTQ0NGItYTNlMC04NzhiYTZlNDk5MGEiLCJldmVudF9pZCI6IjAyNTdmMDE3LTk2MGYtNDc0ZS1iZWZjLWYwNDE3NDJlYjdjOSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2NjYzMTUwMzIsImV4cCI6MTY2NjMxODYzMiwiaWF0IjoxNjY2MzE1MDMyLCJqdGkiOiJlOGZkNmY0Zi04YTM3LTQzNmUtOGViYy0wNmU1MGEzODU3YzAiLCJ1c2VybmFtZSI6IjUyZTE4N2QzLWE4ZDItNDE4Zi1hOGM0LTQwMWI1ODFlYjRmMiJ9.mNYqHFah42dkfAHWfTSOGFFKivKdRt0BKttB1JSH3jceSOV-ahlaSLXf5qrGR85EylEWCfVxr0gl3ujzuKQZ29hbif272bEQytcDc-XcIkEG_xFy83Nt3-QA7DRoROb_C7BhJxHdz5plZLN3BOE6fvIafMrFHSHuuypL4hxrlUtbNYpW7WesQ2sLhqbTDEDgp7EnaxX6u3iAGVSgeHaf4uuObCWUPK3NBcJeFXYzUJfx3wRTfWpxuUtAPfEojhkmlMptitlALJPqjZ3WPc8cqHHj99JbSquTkZgPykRQ2wWgwx16eGkMbxiCcR_vMRzc8xWcvnEDvg0Eeye8d_Hpqw',
+    }
+});// unauthorized unless a token is attached;
 
 class App extends React.Component {
 

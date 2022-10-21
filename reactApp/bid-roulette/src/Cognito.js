@@ -1,15 +1,19 @@
 'use strict';
 
+
+//require(dotenv).config();
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
 function signup(name, email, password) {
-
+console.log('signup fired');
   if (!name || !email || !password) {
     throw new Error('Input Validation Error : name, email or password invalid');
   }
   const poolData = {
-    UserPoolId: process.env.AWS_COGNITO_USER_POOL_ID,
-    ClientId: process.env.AWS_COGNITO_CLIENT_ID,
+    // UserPoolId: process.env.AWS_COGNITO_USER_POOL_ID,
+    // ClientId: process.env.AWS_COGNITO_CLIENT_ID,
+    UserPoolId: 'us-west-2_8cSOVLPsf',
+    ClientId: '6bfcj8mutkphp2v271ful0bgjq',
   }
 
   const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -17,6 +21,7 @@ function signup(name, email, password) {
     Name: 'email',
     Value: email
   }
+ 
   const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
 //
   const dataName = {
@@ -25,8 +30,10 @@ function signup(name, email, password) {
   }
   const attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(dataName);
 //
-  userPool.signUp(name, email, password, [attributeEmail, attributeName], null, (err, data) => {
+  console.log(attributeName, attributeEmail, name, email, password,userPool.signUp);
+  userPool.signUp('test1', password, [attributeName, attributeEmail], null, (err, data) => {
     if (err) {
+      console.log('We are getting an error');
       console.error(err);
     }
     let user = data.user;

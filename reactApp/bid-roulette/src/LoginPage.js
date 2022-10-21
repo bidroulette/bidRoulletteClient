@@ -8,19 +8,23 @@ class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username:'',
+      name:'',
       password:'',
   }
 };
 
   onSubmit = (event) => {
   event.preventDefault();
-  console.log(this.state.username)
+console.log('event fired');
+  // console.log(event.target.value);
+  signup(event.target.name.value,
+     event.target.email.value, event.target.password.value);
   }
+
   onChange = (event) => {
     event.preventDefault();
     console.log(event.target.value)
-    event.target.id === 'username' ? this.setState({username: event.target.value}):
+    event.target.id === 'username' ? this.setState({name: event.target.value}):
     this.setState({password: event.target.value});
   }
 
@@ -28,8 +32,18 @@ class LoginPage extends React.Component {
       return (
         <>
           <Form onSubmit={this.onSubmit}>
-            <Form.Group controlId='username'>
-            <Form.Label>Username</Form.Label>
+          <Form.Group controlId='name'>
+            <Form.Label>Name</Form.Label>
+            <Form.Control onChange={this.onChange}></Form.Control>
+            </Form.Group>
+
+            {/* <Form.Group controlId='userName'>
+            <Form.Label>UserName</Form.Label>
+            <Form.Control onChange={this.onChange}></Form.Control>
+            </Form.Group> */}
+
+            <Form.Group controlId='email'>
+            <Form.Label>Email</Form.Label>
             <Form.Control onChange={this.onChange}></Form.Control>
             </Form.Group>
             

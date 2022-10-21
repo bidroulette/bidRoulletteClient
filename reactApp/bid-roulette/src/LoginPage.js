@@ -1,17 +1,44 @@
 import React from 'react';
+import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-//import { withAuth0 } from '@auth0/auth0-react';
-//import App from './App.js';
+import { signup, signin } from './Cognito.js'
+
 
 class LoginPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username:'',
+      password:'',
+  }
+};
+
+  onSubmit = (event) => {
+  event.preventDefault();
+  console.log(this.state.username)
+  }
+  onChange = (event) => {
+    event.preventDefault();
+    console.log(event.target.value)
+    event.target.id === 'username' ? this.setState({username: event.target.value}):
+    this.setState({password: event.target.value});
+  }
 
     render() {
       return (
         <>
-      <h1>Welcome!</h1>
-         <p>You are logged in now!</p>
-         <a href="https://bid-roulette.auth.us-west-2.amazoncognito.com/logout?client_id=6sgbtibpnbj713hm87rie729cm&logout_uri=http://localhost:3000/LogoutPage.html">Log Out</a>
-
+          <Form onSubmit={this.onSubmit}>
+            <Form.Group controlId='username'>
+            <Form.Label>Username</Form.Label>
+            <Form.Control onChange={this.onChange}></Form.Control>
+            </Form.Group>
+            
+            <Form.Group controlId='password'>
+            <Form.Label>Password</Form.Label>
+            <Form.Control onChange={this.onChange}></Form.Control>
+            </Form.Group>
+            <Button type='submit'>submit</Button>
+            </Form>
         </>
       )
     }
